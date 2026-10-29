@@ -134,6 +134,12 @@ BEGIN
     PRINT 'WARNING: Table [silver_cms].[shared_savings_program] already exists. Skipping creation.';
 END;
 
+-- Add a foreign key 
+ALTER TABLE silver_cms.shared_savings_program
+    ADD CONSTRAINT fk_shared_savings_program 
+        FOREIGN KEY (bronze_id) 
+        REFERENCES bronze_cms.shared_savings_program (id);
+
 
 -- Check if the GOLD table already exists; if it doesn't, create it
 IF OBJECT_ID('gold_cms.shared_savings_program', 'U') IS NULL
